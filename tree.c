@@ -6,16 +6,12 @@
 typedef int Element;
 typedef int Error;
 
-typedef struct Node
-{
-    Element value;
-    struct Node *leftChild;
-    struct Node *rightChild;
-}Node;
 
 typedef struct Tree
 {
-    Node *root;
+    Element value;
+    struct Tree *leftChild;
+    struct Tree *rightChild;
 }Tree;
 
 Error makeEmptyTree(Tree** treeRef)
@@ -25,7 +21,7 @@ Error makeEmptyTree(Tree** treeRef)
 
 void freeTree(Tree* tree)
 {
-    return;
+    return - 1;
 }
 
 Error exists(Tree* tree, Element element, bool* isExist)
