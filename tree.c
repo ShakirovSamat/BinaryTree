@@ -16,17 +16,52 @@ typedef struct Tree
 
 Error makeEmptyTree(Tree** treeRef)
 {
-    return -1;
+    *treeRef = calloc(1, sizeof(Tree));
+    if (*treeRef == NULL)
+    {
+        return -1;
+    }
+    return 0;
 }
 
 void freeTree(Tree* tree)
 {
-    return - 1;
+    if (tree == NULL)
+    {
+        return;
+    }
+
+    freeTree(tree->leftChild);
+    freeTree(tree->rightChild);
+
+    free(tree);
+
+    return;
 }
 
 Error exists(Tree* tree, Element element, bool* isExist)
 {
-    return -1;
+    if (tree == NULL)
+    {
+        *isExist = false;
+        return 0;
+    }
+
+    if (element == tree->value)
+    {
+        *isExist = true;
+        return 0;
+    }
+    
+    if (element < tree->value)
+    {
+        return exists(tree->leftChild, element, isExist);
+    }
+    
+    
+    
+       return exists(tree->rightChild, element, isExist);
+    
 }
 
 Error addElement(Tree* tree, Element element)
