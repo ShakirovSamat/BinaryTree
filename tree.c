@@ -56,10 +56,24 @@ Error treeHeight(Tree* tree, int* heightRef)
 
 Error printPreorder(Tree* tree)
 {
-    return -1;
+    if (tree == NULL)
+    {
+        return 0;
+    }
+    printf("%d ", tree->value);
+    printPreorder(tree->leftChild);
+    printPreorder(tree->rightChild);
+    return 0;
 }
 
 Error printInorder(Tree* tree)
 {
-    return -1;
+    if (tree == NULL)
+    {
+        return 0;
+    }
+    printInorder(tree->leftChild);
+    printf("%d ", tree->value);
+    printInorder(tree->rightChild);
+    return 0;
 }
