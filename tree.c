@@ -46,12 +46,38 @@ Error removeElement(Tree* tree, Element element)
 
 Error countOfElements(Tree* tree, int* countRef)
 {
-    return -1;
+    if (tree == NULL)
+    {
+        return 0;
+    }
+    *countRef++;
+    countOfElements(tree->leftChild, &countRef);
+    countOfElements(tree->rightChild, &countRef);
+    return 0;
 }
 
 Error treeHeight(Tree* tree, int* heightRef)
 {
-    return -1;
+    if (tree == NULL)
+    {
+        return 0;
+    }
+
+    int maximumHeight = 0;
+    int heightLeft = 0;
+    int heightRight = 0;
+    treeHeight(tree->leftChild, &heightLeft);
+    treeHeight(tree->leftChild, &heightRight);
+    if (heightLeft > heightRight)
+    {
+        maximumHeight = heightLeft;
+    }
+    else
+    {
+        maximumHeight = heightRight;
+    }
+    *heightRef += maximumHeight + 1;
+    return 0;
 }
 
 Error printPreorder(Tree* tree)
